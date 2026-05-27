@@ -39,6 +39,102 @@
       min-height: 100vh;
     }
 
+    body.splash-active {
+      overflow: hidden;
+    }
+
+    /* ---- SPLASH SCREEN ---- */
+    .splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .splash-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: splashIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .splash-inner .splash-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--yellow);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .splash-inner .splash-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .splash-tagline {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      animation: splashIn 0.8s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .splash-loader {
+      width: 40px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      overflow: hidden;
+      animation: splashIn 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .splash-loader::after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--yellow);
+      border-radius: 10px;
+      animation: splashLoad 1.2s 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes splashIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes splashLoad {
+      to {
+        width: 100%;
+      }
+    }
+
     /* ---- HEADER ---- */
     header {
       background: var(--blue);
@@ -122,6 +218,44 @@
       right: 5%;
     }
 
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---- HERO ENTRANCE (after splash) ---- */
+    .hero-badge,
+    .hero h1,
+    .hero p,
+    .hero-stats {
+      opacity: 0;
+      transform: translateY(22px);
+      animation: heroReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-badge {
+      animation-delay: 1.6s;
+    }
+
+    .hero h1 {
+      animation-delay: 1.75s;
+    }
+
+    .hero p {
+      animation-delay: 1.9s;
+    }
+
+    .hero-stats {
+      animation-delay: 2.05s;
+    }
+
+    @keyframes heroReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .hero-badge {
       display: inline-block;
       background: var(--yellow);
@@ -176,6 +310,49 @@
       letter-spacing: 0.5px;
     }
 
+    /* ---- FLOATING PARTICLES ---- */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.2);
+      animation: particleFloat linear infinite;
+    }
+
+    .particle.glow {
+      background: rgba(245, 200, 66, 0.5);
+      box-shadow: 0 0 8px 2px rgba(245, 200, 66, 0.25);
+    }
+
+    @keyframes particleFloat {
+      0% {
+        transform: translateY(0) translateX(0) scale(0);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+      }
+
+      92% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-280px) translateX(var(--drift, 30px)) scale(0.3);
+        opacity: 0;
+      }
+    }
+
     /* ---- WAVE DIVIDER ---- */
     .wave {
       display: block;
@@ -223,18 +400,34 @@
       }
     }
 
+    /* ---- SCROLL ANIMATIONS ---- */
+    [data-scroll] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition:
+        opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--scroll-delay, 0s);
+    }
+
+    [data-scroll].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- STORY CARD ---- */
     .story-card {
       background: var(--card-bg);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-      transition: transform 0.25s, box-shadow 0.25s;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
       border: 2px solid transparent;
+      will-change: transform;
     }
 
     .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 32px rgba(30, 111, 181, 0.15);
+      box-shadow: 0 16px 40px rgba(30, 111, 181, 0.18);
       border-color: var(--blue-light);
     }
 
@@ -352,6 +545,62 @@
 
     .play-btn:active {
       transform: scale(0.96);
+    }
+
+    /* ---- EQUALIZER VISUALIZER ---- */
+    .equalizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .equalizer span {
+      display: block;
+      width: 3px;
+      height: 3px;
+      border-radius: 1.5px;
+      transition: height 0.2s ease;
+    }
+
+    .equalizer.active span {
+      animation: eqBounce 0.5s ease-in-out infinite alternate;
+    }
+
+    .equalizer.active span:nth-child(1) {
+      animation-duration: 0.45s;
+      animation-delay: 0s;
+    }
+
+    .equalizer.active span:nth-child(2) {
+      animation-duration: 0.55s;
+      animation-delay: 0.08s;
+    }
+
+    .equalizer.active span:nth-child(3) {
+      animation-duration: 0.4s;
+      animation-delay: 0.15s;
+    }
+
+    .equalizer.active span:nth-child(4) {
+      animation-duration: 0.5s;
+      animation-delay: 0.05s;
+    }
+
+    .equalizer.active span:nth-child(5) {
+      animation-duration: 0.42s;
+      animation-delay: 0.12s;
+    }
+
+    @keyframes eqBounce {
+      0% {
+        height: 3px;
+      }
+
+      100% {
+        height: 18px;
+      }
     }
 
     .player-info {
@@ -492,7 +741,17 @@
   </style>
 </head>
 
-<body>
+<body class="splash-active">
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash" id="splash">
+    <div class="splash-inner">
+      <div class="splash-icon">✏️</div>
+      <div class="splash-text">Pena Biru</div>
+    </div>
+    <div class="splash-tagline">Audiobook Cerita Daerah Bengkulu</div>
+    <div class="splash-loader"></div>
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -508,21 +767,24 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">🌺 Cerita Daerah Bengkulu</div>
-    <h1>Dengarkan Cerita,<br>Rasakan Budayanya</h1>
-    <p>Koleksi audiobook cerita rakyat Bengkulu yang memukau — warisan budaya yang hidup di setiap kata.</p>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">6</div>
-        <div class="stat-label">Cerita</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Gratis</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">🎧</div>
-        <div class="stat-label">Audio</div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌺 Cerita Daerah Bengkulu</div>
+      <h1>Dengarkan Cerita,<br>Rasakan Budayanya</h1>
+      <p>Koleksi audiobook cerita rakyat Bengkulu yang memukau — warisan budaya yang hidup di setiap kata.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Cerita</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Gratis</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">🎧</div>
+          <div class="stat-label">Audio</div>
+        </div>
       </div>
     </div>
   </div>
@@ -536,13 +798,13 @@
   <!-- MAIN -->
   <main>
     <div id="cerita">
-      <h2 class="section-title">📚 Koleksi Cerita</h2>
-      <p class="section-sub">Enam cerita rakyat pilihan dari Bumi Raflesia</p>
+      <h2 class="section-title" data-scroll>📚 Koleksi Cerita</h2>
+      <p class="section-sub" data-scroll style="--scroll-delay: 0.05s">Enam cerita rakyat pilihan dari Bumi Raflesia</p>
 
       <div class="stories-grid">
 
         <!-- CARD 1 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0s">
           <div class="card-cover cover-1">
             🐉
             <span class="cover-num">01</span>
@@ -556,6 +818,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#8B5CF6;" onclick="togglePlay(this, 'audio1')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq1">
+                  <span style="background:#8B5CF6"></span>
+                  <span style="background:#8B5CF6"></span>
+                  <span style="background:#8B5CF6"></span>
+                  <span style="background:#8B5CF6"></span>
+                  <span style="background:#8B5CF6"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Putri Gading Cempaka</div>
                   <div class="player-time" id="time1">0:00 / 0:00</div>
@@ -570,7 +839,7 @@
         </div>
 
         <!-- CARD 2 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.07s">
           <div class="card-cover cover-2">
             🌊
             <span class="cover-num">02</span>
@@ -584,6 +853,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#E8534A;" onclick="togglePlay(this, 'audio2')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq2">
+                  <span style="background:#E8534A"></span>
+                  <span style="background:#E8534A"></span>
+                  <span style="background:#E8534A"></span>
+                  <span style="background:#E8534A"></span>
+                  <span style="background:#E8534A"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Asal Usul Danau Tes</div>
                   <div class="player-time" id="time2">0:00 / 0:00</div>
@@ -598,7 +874,7 @@
         </div>
 
         <!-- CARD 3 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.14s">
           <div class="card-cover cover-3">
             🐟
             <span class="cover-num">03</span>
@@ -612,6 +888,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#1E6FB5;" onclick="togglePlay(this, 'audio3')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq3">
+                  <span style="background:#1E6FB5"></span>
+                  <span style="background:#1E6FB5"></span>
+                  <span style="background:#1E6FB5"></span>
+                  <span style="background:#1E6FB5"></span>
+                  <span style="background:#1E6FB5"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Si Kelingking</div>
                   <div class="player-time" id="time3">0:00 / 0:00</div>
@@ -626,7 +909,7 @@
         </div>
 
         <!-- CARD 4 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.21s">
           <div class="card-cover cover-4">
             🌸
             <span class="cover-num">04</span>
@@ -639,6 +922,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#3DB87A;" onclick="togglePlay(this, 'audio4')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq4">
+                  <span style="background:#3DB87A"></span>
+                  <span style="background:#3DB87A"></span>
+                  <span style="background:#3DB87A"></span>
+                  <span style="background:#3DB87A"></span>
+                  <span style="background:#3DB87A"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Bunga Raflesia Arnoldi</div>
                   <div class="player-time" id="time4">0:00 / 0:00</div>
@@ -653,7 +943,7 @@
         </div>
 
         <!-- CARD 5 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.28s">
           <div class="card-cover cover-5">
             🦅
             <span class="cover-num">05</span>
@@ -667,6 +957,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#F59E0B;" onclick="togglePlay(this, 'audio5')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq5">
+                  <span style="background:#F59E0B"></span>
+                  <span style="background:#F59E0B"></span>
+                  <span style="background:#F59E0B"></span>
+                  <span style="background:#F59E0B"></span>
+                  <span style="background:#F59E0B"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Batu Menangis</div>
                   <div class="player-time" id="time5">0:00 / 0:00</div>
@@ -681,7 +978,7 @@
         </div>
 
         <!-- CARD 6 -->
-        <div class="story-card">
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.35s">
           <div class="card-cover cover-6">
             🌙
             <span class="cover-num">06</span>
@@ -695,6 +992,13 @@
               <div class="player-top">
                 <button class="play-btn" style="background:#A855F7;" onclick="togglePlay(this, 'audio6')"
                   aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq6">
+                  <span style="background:#A855F7"></span>
+                  <span style="background:#A855F7"></span>
+                  <span style="background:#A855F7"></span>
+                  <span style="background:#A855F7"></span>
+                  <span style="background:#A855F7"></span>
+                </div>
                 <div class="player-info">
                   <div class="player-title">Tabut Bengkulu</div>
                   <div class="player-time" id="time6">0:00 / 0:00</div>
@@ -712,7 +1016,7 @@
     </div>
 
     <!-- ABOUT -->
-    <div class="about-section" id="tentang">
+    <div class="about-section" id="tentang" data-scroll style="--scroll-delay: 0.1s">
       <div class="about-icon">✏️</div>
       <div class="about-content">
         <h2>Tentang Pena Biru</h2>
@@ -729,6 +1033,107 @@
   </footer>
 
   <script>
+    /* ================================================
+       1. SPLASH SCREEN
+       ================================================ */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.classList.add('hidden');
+        document.body.classList.remove('splash-active');
+        splash.addEventListener('transitionend', () => {
+          splash.remove();
+        }, { once: true });
+      }, 1800);
+    });
+
+    /* ================================================
+       2. FLOATING PARTICLES
+       ================================================ */
+    (function initParticles() {
+      const container = document.getElementById('particles');
+      if (!container) return;
+      const count = window.innerWidth < 600 ? 14 : 24;
+
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        if (Math.random() > 0.6) p.classList.add('glow');
+
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const bottom = Math.random() * 30;
+        const duration = Math.random() * 6 + 5;
+        const delay = Math.random() * 8;
+        const drift = (Math.random() - 0.5) * 80;
+
+        p.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${left}%;
+          bottom: ${bottom}%;
+          animation-duration: ${duration}s;
+          animation-delay: ${delay}s;
+          --drift: ${drift}px;
+        `;
+
+        container.appendChild(p);
+      }
+    })();
+
+    /* ================================================
+       3. SCROLL REVEAL (Intersection Observer)
+       ================================================ */
+    (function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      document.querySelectorAll('[data-scroll]').forEach(el => observer.observe(el));
+    })();
+
+    /* ================================================
+       4. 3D TILT EFFECT (desktop only)
+       ================================================ */
+    (function initTilt() {
+      if (window.matchMedia('(hover: none)').matches) return;
+
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transition = 'box-shadow 0.35s ease';
+        });
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = ((y - centerY) / centerY) * -6;
+          const rotateY = ((x - centerX) / centerX) * 6;
+
+          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.01)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease';
+          card.style.transform = '';
+        });
+      });
+    })();
+
+    /* ================================================
+       5. AUDIO PLAYER + EQUALIZER
+       ================================================ */
     function fmt(s) {
       if (isNaN(s)) return '0:00';
       const m = Math.floor(s / 60);
@@ -749,29 +1154,41 @@
       });
 
       audio.addEventListener('ended', () => {
-        const btn = audio.previousElementSibling.previousElementSibling.querySelector('.play-btn');
+        const player = audio.closest('.audio-player');
+        const btn = player.querySelector('.play-btn');
+        const eq = player.querySelector('.equalizer');
         btn.textContent = '▶';
+        eq.classList.remove('active');
         progEl.style.width = '0%';
       });
     }
 
     function togglePlay(btn, id) {
       const audio = document.getElementById(id);
+
       // Pause all others
       for (let i = 1; i <= 6; i++) {
         const a = document.getElementById('audio' + i);
         if ('audio' + i !== id && !a.paused) {
           a.pause();
-          const b = a.previousElementSibling.previousElementSibling.querySelector('.play-btn');
-          if (b) b.textContent = '▶';
+          const otherPlayer = a.closest('.audio-player');
+          const otherBtn = otherPlayer.querySelector('.play-btn');
+          const otherEq = otherPlayer.querySelector('.equalizer');
+          if (otherBtn) otherBtn.textContent = '▶';
+          if (otherEq) otherEq.classList.remove('active');
         }
       }
+
+      const eq = audio.closest('.audio-player').querySelector('.equalizer');
+
       if (audio.paused) {
         audio.play();
         btn.textContent = '⏸';
+        eq.classList.add('active');
       } else {
         audio.pause();
         btn.textContent = '▶';
+        eq.classList.remove('active');
       }
     }
 
