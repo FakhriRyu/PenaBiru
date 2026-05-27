@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pena Biru – Audiobook Cerita Daerah Bengkulu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1E6FB5;
+      --blue-light: #4A9FDB;
+      --blue-pale: #E8F4FD;
+      --yellow: #F5C842;
+      --yellow-light: #FFF3BE;
+      --red: #E8534A;
+      --green: #3DB87A;
+      --purple: #8B5CF6;
+      --pink: #F472B6;
+      --teal: #14B8A6;
+      --bg: #FFFDF6;
+      --text: #1A1A2E;
+      --text-muted: #5A5A7A;
+      --card-bg: #FFFFFF;
+      --radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ---- HEADER ---- */
+    header {
+      background: var(--blue);
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 4px 20px rgba(30, 111, 181, 0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--yellow);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: var(--blue);
+      padding: 3.5rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      top: -80px;
+      left: -80px;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      bottom: -50px;
+      right: 5%;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #7A5A00;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.8rem;
+      color: var(--yellow);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---- WAVE DIVIDER ---- */
+    .wave {
+      display: block;
+      width: 100%;
+      margin-bottom: -4px;
+    }
+
+    /* ---- MAIN CONTENT ---- */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    @media (min-width: 480px) {
+      main {
+        padding: 2.5rem 1.5rem 4rem;
+      }
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem;
+      color: var(--blue);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ---- STORY GRID ---- */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 480px) {
+      .stories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+    }
+
+    .story-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 2px solid transparent;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(30, 111, 181, 0.15);
+      border-color: var(--blue-light);
+    }
+
+    .card-cover {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-cover .cover-num {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.75rem;
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .cover-1 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .cover-2 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .cover-3 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .cover-4 {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .cover-5 {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .cover-6 {
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    }
+
+    .card-body {
+      padding: 1rem 1.2rem 1.2rem;
+    }
+
+    .card-origin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    /* ---- AUDIO PLAYER ---- */
+    .audio-player {
+      background: #F5F7FF;
+      border-radius: 14px;
+      padding: 0.8rem 1rem;
+    }
+
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .play-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s, opacity 0.15s;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.08);
+      opacity: 0.9;
+    }
+
+    .play-btn:active {
+      transform: scale(0.96);
+    }
+
+    .player-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-time {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .progress-wrap {
+      position: relative;
+      height: 6px;
+      background: #D9DCF0;
+      border-radius: 10px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.2s;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-section {
+      margin-top: 3.5rem;
+      background: var(--blue-pale);
+      border-radius: 20px;
+      padding: 1.5rem 1.2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 480px) {
+      .about-section {
+        border-radius: 24px;
+        padding: 2.5rem;
+        gap: 2rem;
+      }
+    }
+
+    .about-icon {
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+
+    .about-content h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--blue);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--yellow);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 2rem 1rem 3.5rem;
+      }
+
+      .hero-stats {
+        gap: 1rem;
+      }
+
+      .stat-num {
+        font-size: 1.5rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-icon {
+        font-size: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero {
+        padding: 1.8rem 0.8rem 3rem;
+      }
+
+      .hero-stats {
+        gap: 0.7rem;
+      }
+
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .card-body {
+        padding: 0.8rem 1rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <div class="logo-icon">✏️</div>
+      <span class="logo-text">Pena Biru</span>
+    </a>
+    <nav>
+      <a href="#cerita">Cerita</a>
+      <a href="#tentang">Tentang</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">🌺 Cerita Daerah Bengkulu</div>
+    <h1>Dengarkan Cerita,<br>Rasakan Budayanya</h1>
+    <p>Koleksi audiobook cerita rakyat Bengkulu yang memukau — warisan budaya yang hidup di setiap kata.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Cerita</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Gratis</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">🎧</div>
+        <div class="stat-label">Audio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WAVE -->
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+    style="background:#1E6FB5;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFDF6" />
+  </svg>
+
+  <!-- MAIN -->
+  <main>
+    <div id="cerita">
+      <h2 class="section-title">📚 Koleksi Cerita</h2>
+      <p class="section-sub">Enam cerita rakyat pilihan dari Bumi Raflesia</p>
+
+      <div class="stories-grid">
+
+        <!-- CARD 1 -->
+        <div class="story-card">
+          <div class="card-cover cover-1">
+            🐉
+            <span class="cover-num">01</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#EDE9FE; color:#5B21B6;">📍 Bengkulu Tengah</span>
+            <h3 class="card-title">Putri Gading Cempaka</h3>
+            <p class="card-desc">Kisah putri cantik yang menjadi cikal bakal Suku Rejang dan berdirinya Kerajaan Sungai
+              Serut.</p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#8B5CF6;" onclick="togglePlay(this, 'audio1')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Putri Gading Cempaka</div>
+                  <div class="player-time" id="time1">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio1', this)">
+                <div class="progress-bar" id="prog1" style="background:#8B5CF6;"></div>
+              </div>
+              <audio id="audio1" src="Example.mp3" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="story-card">
+          <div class="card-cover cover-2">
+            🌊
+            <span class="cover-num">02</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#FEE2E2; color:#991B1B;">📍 Bengkulu Selatan</span>
+            <h3 class="card-title">Asal Usul Danau Tes</h3>
+            <p class="card-desc">Legenda terbentuknya Danau Tes di Lebong, tentang keserakahan yang mengundang bencana.
+            </p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#E8534A;" onclick="togglePlay(this, 'audio2')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Asal Usul Danau Tes</div>
+                  <div class="player-time" id="time2">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio2', this)">
+                <div class="progress-bar" id="prog2" style="background:#E8534A;"></div>
+              </div>
+              <audio id="audio2" src="GANTI_LINK_AUDIO_2" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="story-card">
+          <div class="card-cover cover-3">
+            🐟
+            <span class="cover-num">03</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#DBEAFE; color:#1E40AF;">📍 Lebong</span>
+            <h3 class="card-title">Si Kelingking</h3>
+            <p class="card-desc">Bocah kecil bertubuh sebesar jari kelingking yang punya keberanian dan kecerdikan luar
+              biasa.</p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#1E6FB5;" onclick="togglePlay(this, 'audio3')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Si Kelingking</div>
+                  <div class="player-time" id="time3">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio3', this)">
+                <div class="progress-bar" id="prog3" style="background:#1E6FB5;"></div>
+              </div>
+              <audio id="audio3" src="GANTI_LINK_AUDIO_3" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="story-card">
+          <div class="card-cover cover-4">
+            🌸
+            <span class="cover-num">04</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#D1FAE5; color:#065F46;">📍 Rejang Lebong</span>
+            <h3 class="card-title">Bunga Raflesia Arnoldi</h3>
+            <p class="card-desc">Mitos di balik mekarnya bunga terbesar di dunia, simbol kebanggaan tanah Bengkulu.</p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#3DB87A;" onclick="togglePlay(this, 'audio4')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Bunga Raflesia Arnoldi</div>
+                  <div class="player-time" id="time4">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio4', this)">
+                <div class="progress-bar" id="prog4" style="background:#3DB87A;"></div>
+              </div>
+              <audio id="audio4" src="GANTI_LINK_AUDIO_4" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="story-card">
+          <div class="card-cover cover-5">
+            🦅
+            <span class="cover-num">05</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#FEF3C7; color:#92400E;">📍 Mukomuko</span>
+            <h3 class="card-title">Batu Menangis</h3>
+            <p class="card-desc">Kisah seorang anak durhaka yang dikutuk menjadi batu, pelajaran tentang bakti kepada
+              orang tua.</p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#F59E0B;" onclick="togglePlay(this, 'audio5')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Batu Menangis</div>
+                  <div class="player-time" id="time5">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio5', this)">
+                <div class="progress-bar" id="prog5" style="background:#F59E0B;"></div>
+              </div>
+              <audio id="audio5" src="GANTI_LINK_AUDIO_5" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="story-card">
+          <div class="card-cover cover-6">
+            🌙
+            <span class="cover-num">06</span>
+          </div>
+          <div class="card-body">
+            <span class="card-origin" style="background:#F3E8FF; color:#6B21A8;">📍 Seluma</span>
+            <h3 class="card-title">Tabut Bengkulu</h3>
+            <p class="card-desc">Asal mula tradisi Tabut, perayaan yang telah menjadi warisan budaya tak benda Bengkulu.
+            </p>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#A855F7;" onclick="togglePlay(this, 'audio6')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="player-info">
+                  <div class="player-title">Tabut Bengkulu</div>
+                  <div class="player-time" id="time6">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio6', this)">
+                <div class="progress-bar" id="prog6" style="background:#A855F7;"></div>
+              </div>
+              <audio id="audio6" src="GANTI_LINK_AUDIO_6" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end grid -->
+    </div>
+
+    <!-- ABOUT -->
+    <div class="about-section" id="tentang">
+      <div class="about-icon">✏️</div>
+      <div class="about-content">
+        <h2>Tentang Pena Biru</h2>
+        <p>Pena Biru hadir untuk melestarikan cerita rakyat Bengkulu dalam format audiobook yang mudah dinikmati siapa
+          saja. Kami percaya bahwa warisan budaya harus terus hidup dan didengar oleh generasi masa kini. Semua cerita
+          disajikan secara gratis sebagai dedikasi untuk Bumi Raflesia.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Dibuat dengan ❤️ untuk <strong>Bumi Raflesia</strong> · © 2025 Pena Biru</p>
+  </footer>
+
+  <script>
+    function fmt(s) {
+      if (isNaN(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    for (let i = 1; i <= 6; i++) {
+      const audio = document.getElementById('audio' + i);
+      const timeEl = document.getElementById('time' + i);
+      const progEl = document.getElementById('prog' + i);
+
+      audio.addEventListener('timeupdate', () => {
+        timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+        if (audio.duration) {
+          progEl.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        const btn = audio.previousElementSibling.previousElementSibling.querySelector('.play-btn');
+        btn.textContent = '▶';
+        progEl.style.width = '0%';
+      });
+    }
+
+    function togglePlay(btn, id) {
+      const audio = document.getElementById(id);
+      // Pause all others
+      for (let i = 1; i <= 6; i++) {
+        const a = document.getElementById('audio' + i);
+        if ('audio' + i !== id && !a.paused) {
+          a.pause();
+          const b = a.previousElementSibling.previousElementSibling.querySelector('.play-btn');
+          if (b) b.textContent = '▶';
+        }
+      }
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '⏸';
+      } else {
+        audio.pause();
+        btn.textContent = '▶';
+      }
+    }
+
+    function seek(e, id, wrap) {
+      const audio = document.getElementById(id);
+      if (!audio.duration) return;
+      const rect = wrap.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    }
+  </script>
+</body>
+
+</html>
