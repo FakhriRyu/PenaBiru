@@ -432,7 +432,8 @@
     }
 
     .card-cover {
-      height: 140px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -454,27 +455,39 @@
     }
 
     .cover-1 {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: url('image/lubuk-kembang.png') center/cover no-repeat;
     }
 
     .cover-2 {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      background: url('image/batu_betajuk.png') center/cover no-repeat;
     }
 
     .cover-3 {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      background: url('image/Kuau_ngah_kak.png') center/cover no-repeat;
     }
 
     .cover-4 {
-      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      background: url('image/Musuhan_baung_ngah_pelus.png') center/cover no-repeat;
     }
 
     .cover-5 {
-      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      background: url('image/Ndung_Pungguk_ngah_Bulan.png') center/cover no-repeat;
     }
 
     .cover-6 {
-      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      background: url('image/sang_piatu_nempah_besi.png') center/cover no-repeat;
+    }
+
+    .cover-7 {
+      background: url('image/Buaye_palak_dalung.png') center/cover no-repeat;
+    }
+
+    .cover-8 {
+      background: url('image/Canting-canting.png') center/cover no-repeat;
+    }
+
+    .cover-9 {
+      background: url('image/Raden_miskin.png') center/cover no-repeat;
     }
 
     .card-body {
@@ -774,7 +787,7 @@
       <p>Koleksi audiobook cerita rakyat Bengkulu yang memukau — warisan budaya yang hidup di setiap kata.</p>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num">6</div>
+          <div class="stat-num">9</div>
           <div class="stat-label">Cerita</div>
         </div>
         <div class="stat">
@@ -799,21 +812,17 @@
   <main>
     <div id="cerita">
       <h2 class="section-title" data-scroll>📚 Koleksi Cerita</h2>
-      <p class="section-sub" data-scroll style="--scroll-delay: 0.05s">Enam cerita rakyat pilihan dari Bumi Raflesia</p>
+      <p class="section-sub" data-scroll style="--scroll-delay: 0.05s">Sembilan cerita rakyat pilihan dari Bumi Raflesia</p>
 
       <div class="stories-grid">
 
         <!-- CARD 1 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0s">
           <div class="card-cover cover-1">
-            🐉
             <span class="cover-num">01</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#EDE9FE; color:#5B21B6;">📍 Bengkulu Tengah</span>
-            <h3 class="card-title">Putri Gading Cempaka</h3>
-            <p class="card-desc">Kisah putri cantik yang menjadi cikal bakal Suku Rejang dan berdirinya Kerajaan Sungai
-              Serut.</p>
+            <h3 class="card-title">Asal Usul Lubuk Kembang</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#8B5CF6;" onclick="togglePlay(this, 'audio1')"
@@ -826,7 +835,7 @@
                   <span style="background:#8B5CF6"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Putri Gading Cempaka</div>
+                  <div class="player-title">Asal Usul Lubuk Kembang</div>
                   <div class="player-time" id="time1">0:00 / 0:00</div>
                 </div>
               </div>
@@ -841,14 +850,10 @@
         <!-- CARD 2 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.07s">
           <div class="card-cover cover-2">
-            🌊
             <span class="cover-num">02</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#FEE2E2; color:#991B1B;">📍 Bengkulu Selatan</span>
-            <h3 class="card-title">Asal Usul Danau Tes</h3>
-            <p class="card-desc">Legenda terbentuknya Danau Tes di Lebong, tentang keserakahan yang mengundang bencana.
-            </p>
+            <h3 class="card-title">Batu Betajuk</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#E8534A;" onclick="togglePlay(this, 'audio2')"
@@ -861,7 +866,7 @@
                   <span style="background:#E8534A"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Asal Usul Danau Tes</div>
+                  <div class="player-title">Batu Betajuk</div>
                   <div class="player-time" id="time2">0:00 / 0:00</div>
                 </div>
               </div>
@@ -876,14 +881,10 @@
         <!-- CARD 3 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.14s">
           <div class="card-cover cover-3">
-            🐟
             <span class="cover-num">03</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#DBEAFE; color:#1E40AF;">📍 Lebong</span>
-            <h3 class="card-title">Si Kelingking</h3>
-            <p class="card-desc">Bocah kecil bertubuh sebesar jari kelingking yang punya keberanian dan kecerdikan luar
-              biasa.</p>
+            <h3 class="card-title">Kuau Ngah Kak</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#1E6FB5;" onclick="togglePlay(this, 'audio3')"
@@ -896,7 +897,7 @@
                   <span style="background:#1E6FB5"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Si Kelingking</div>
+                  <div class="player-title">Kuau Ngah Kak</div>
                   <div class="player-time" id="time3">0:00 / 0:00</div>
                 </div>
               </div>
@@ -911,13 +912,10 @@
         <!-- CARD 4 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.21s">
           <div class="card-cover cover-4">
-            🌸
             <span class="cover-num">04</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#D1FAE5; color:#065F46;">📍 Rejang Lebong</span>
-            <h3 class="card-title">Bunga Raflesia Arnoldi</h3>
-            <p class="card-desc">Mitos di balik mekarnya bunga terbesar di dunia, simbol kebanggaan tanah Bengkulu.</p>
+            <h3 class="card-title">Musuhan Baung Ngah Pelus</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#3DB87A;" onclick="togglePlay(this, 'audio4')"
@@ -930,7 +928,7 @@
                   <span style="background:#3DB87A"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Bunga Raflesia Arnoldi</div>
+                  <div class="player-title">Musuhan Baung Ngah Pelus</div>
                   <div class="player-time" id="time4">0:00 / 0:00</div>
                 </div>
               </div>
@@ -945,14 +943,10 @@
         <!-- CARD 5 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.28s">
           <div class="card-cover cover-5">
-            🦅
             <span class="cover-num">05</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#FEF3C7; color:#92400E;">📍 Mukomuko</span>
-            <h3 class="card-title">Batu Menangis</h3>
-            <p class="card-desc">Kisah seorang anak durhaka yang dikutuk menjadi batu, pelajaran tentang bakti kepada
-              orang tua.</p>
+            <h3 class="card-title">Ndung Pungguk Ngah Bulan</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#F59E0B;" onclick="togglePlay(this, 'audio5')"
@@ -965,7 +959,7 @@
                   <span style="background:#F59E0B"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Batu Menangis</div>
+                  <div class="player-title">Ndung Pungguk Ngah Bulan</div>
                   <div class="player-time" id="time5">0:00 / 0:00</div>
                 </div>
               </div>
@@ -980,14 +974,10 @@
         <!-- CARD 6 -->
         <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.35s">
           <div class="card-cover cover-6">
-            🌙
             <span class="cover-num">06</span>
           </div>
           <div class="card-body">
-            <span class="card-origin" style="background:#F3E8FF; color:#6B21A8;">📍 Seluma</span>
-            <h3 class="card-title">Tabut Bengkulu</h3>
-            <p class="card-desc">Asal mula tradisi Tabut, perayaan yang telah menjadi warisan budaya tak benda Bengkulu.
-            </p>
+            <h3 class="card-title">Sang Piatu Nempah Besi</h3>
             <div class="audio-player">
               <div class="player-top">
                 <button class="play-btn" style="background:#A855F7;" onclick="togglePlay(this, 'audio6')"
@@ -1000,7 +990,7 @@
                   <span style="background:#A855F7"></span>
                 </div>
                 <div class="player-info">
-                  <div class="player-title">Tabut Bengkulu</div>
+                  <div class="player-title">Sang Piatu Nempah Besi</div>
                   <div class="player-time" id="time6">0:00 / 0:00</div>
                 </div>
               </div>
@@ -1008,6 +998,99 @@
                 <div class="progress-bar" id="prog6" style="background:#A855F7;"></div>
               </div>
               <audio id="audio6" src="GANTI_LINK_AUDIO_6" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 7 -->
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.42s">
+          <div class="card-cover cover-7">
+            <span class="cover-num">07</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Buaye Palak Dalung</h3>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#EC4899;" onclick="togglePlay(this, 'audio7')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq7">
+                  <span style="background:#EC4899"></span>
+                  <span style="background:#EC4899"></span>
+                  <span style="background:#EC4899"></span>
+                  <span style="background:#EC4899"></span>
+                  <span style="background:#EC4899"></span>
+                </div>
+                <div class="player-info">
+                  <div class="player-title">Buaye Palak Dalung</div>
+                  <div class="player-time" id="time7">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio7', this)">
+                <div class="progress-bar" id="prog7" style="background:#EC4899;"></div>
+              </div>
+              <audio id="audio7" src="GANTI_LINK_AUDIO_7" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 8 -->
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.49s">
+          <div class="card-cover cover-8">
+            <span class="cover-num">08</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Canting Canting</h3>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#06B6D4;" onclick="togglePlay(this, 'audio8')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq8">
+                  <span style="background:#06B6D4"></span>
+                  <span style="background:#06B6D4"></span>
+                  <span style="background:#06B6D4"></span>
+                  <span style="background:#06B6D4"></span>
+                  <span style="background:#06B6D4"></span>
+                </div>
+                <div class="player-info">
+                  <div class="player-title">Canting Canting</div>
+                  <div class="player-time" id="time8">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio8', this)">
+                <div class="progress-bar" id="prog8" style="background:#06B6D4;"></div>
+              </div>
+              <audio id="audio8" src="GANTI_LINK_AUDIO_8" preload="metadata"></audio>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 9 -->
+        <div class="story-card" data-scroll data-tilt style="--scroll-delay: 0.56s">
+          <div class="card-cover cover-9">
+            <span class="cover-num">09</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Raden Miskin</h3>
+            <div class="audio-player">
+              <div class="player-top">
+                <button class="play-btn" style="background:#F97316;" onclick="togglePlay(this, 'audio9')"
+                  aria-label="Play/Pause">▶</button>
+                <div class="equalizer" id="eq9">
+                  <span style="background:#F97316"></span>
+                  <span style="background:#F97316"></span>
+                  <span style="background:#F97316"></span>
+                  <span style="background:#F97316"></span>
+                  <span style="background:#F97316"></span>
+                </div>
+                <div class="player-info">
+                  <div class="player-title">Raden Miskin</div>
+                  <div class="player-time" id="time9">0:00 / 0:00</div>
+                </div>
+              </div>
+              <div class="progress-wrap" onclick="seek(event, 'audio9', this)">
+                <div class="progress-bar" id="prog9" style="background:#F97316;"></div>
+              </div>
+              <audio id="audio9" src="GANTI_LINK_AUDIO_9" preload="metadata"></audio>
             </div>
           </div>
         </div>
@@ -1141,7 +1224,7 @@
       return m + ':' + (sec < 10 ? '0' : '') + sec;
     }
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 9; i++) {
       const audio = document.getElementById('audio' + i);
       const timeEl = document.getElementById('time' + i);
       const progEl = document.getElementById('prog' + i);
@@ -1167,7 +1250,7 @@
       const audio = document.getElementById(id);
 
       // Pause all others
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 9; i++) {
         const a = document.getElementById('audio' + i);
         if ('audio' + i !== id && !a.paused) {
           a.pause();
